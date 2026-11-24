@@ -37,11 +37,15 @@ accusation. "Unread" is the same wound told as a joke, which is exactly
 what the brief rewards.
 
 Pure standard library, no network, no randomness: the same word every run.
+The pick is deterministic by construction -- same candidates, same weights,
+same winner -- so the entry never depends on run order or environment.
 """
 
 import os
 
 # word: (on_subject, funny, true, fresh, readable), each 0-5.
+# The winner must clear the runner-up outright (pick() asserts the gap),
+# so the entry is never decided by a tie-break or by run order.
 CANDIDATES = {
     "Unread": (5, 5, 5, 5, 5),
     "Layover": (5, 5, 5, 5, 4),
